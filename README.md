@@ -105,6 +105,50 @@ def _fuse_features(self, cam, glcm):
     return np.where(0.6*glcm + 0.4*cam > 0.55, 1, 0)
 ```
 
+## Docker容器运行
+构建镜像
+```bash
+sudo docker build -t dlserver .
+```
+
+首次运行DLserver容器实例
+```bash
+# 由于server.py中代码指定了服务器监听端口为8000
+DOCKER_LPORT=8000
+# 这里可以自己设置主机的监听端口
+HOST_LPORT=4396
+# 加上-d可以以后台模式运行docker
+sudo docker run -p $HOST_LPORT:$DOCKER_LPORT -v ./output:/app --name instance_dlserver dlserver
+
+```
+
+在首次运行后再次运行实例
+```bash
+sudo docker start instance_dlserver
+# 挂载卷
+sudo docker start  instance_dlserver
+```
+
+
+删除实例
+```bash
+sudo docker rm instance_dlserver
+```
+
+删除镜像
+```bash
+sudo docker rmi dlserver
+```
+
+
+## 本地测试
+DLserver容器对外暴露端口映射到Host的PORT1上。
+
+
+## TODO
+1. 目前server的监听端口和server对client的callback端口都是在代码中写死的，应该以CLI Args的方式给出。
+2. 
+
 ## 贡献指南
 
 欢迎提交Pull Request！建议遵循以下规范：
