@@ -1,0 +1,6 @@
+opencv_python==4.5.3.56
+numpy==1.21.5
+scikit_image==0.19.2
+matplotlib==3.5.1
+torch==1.13.1
+grad_cam==1.4.6

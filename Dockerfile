@@ -5,15 +5,15 @@ FROM python:3.8-slim
 WORKDIR /app
 
 # 安装 PDM
-RUN pip install pdm
+RUN pip install uv
 
-# 复制项目文件（包括 pyproject.toml 和 pdm.lock）
-COPY pyproject.toml pdm.lock ./
+# 复制项目文件（包括 pyproject.toml 和 uv.lock）
+COPY pyproject.toml ./
 
 RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 # 使用 PDM 安装依赖
-RUN pdm install --no-editable --verbose
-RUN pdm add httpx python-multipart uvicorn
+RUN uv sync
+RUN uv add httpx python-multipart uvicorn
 
 EXPOSE 8000
 
@@ -21,4 +21,4 @@ EXPOSE 8000
 COPY . .
 
 # 设置默认的启动命令
-CMD ["pdm", "run", "python", "server.py"]
+CMD ["uv", "run","server.py"]

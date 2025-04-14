@@ -1,8 +1,18 @@
-
 [project]
-dependencies = ["opencv-python==4.5.3.56", "numpy==1.21.5", "scikit-image>=0.19.3", "matplotlib==3.5.1", "torch==1.13.1", "grad-cam==1.4.6", "fastAPI>=0.103.2"]
-requires-python = "<3.11,>=3.7"
-
-[build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+name = "gsdlbackend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "fastapi>=0.115.12",
+    "grad-cam==1.4.6",
+    "httpx>=0.28.1",
+    "matplotlib==3.5.1",
+    "numpy==1.21.5",
+    "opencv-python==4.5.3.56",
+    "python-multipart>=0.0.20",
+    "scikit-image==0.19.2",
+    "torch==1.13.1",
+    "uvicorn>=0.33.0",
+]
